@@ -14,7 +14,7 @@ class Alien(Sprite):
         self.image = pygame.image.load('images/alien.bmp')
         self.rect = self.image.get_rect()
         self.rect.x = self.screen_rect.x
-        self.rect.y = self.screen_rect.y
+        self.rect.y = 0
 
         # float x & y of alien
         self.x = float(self.rect.x)

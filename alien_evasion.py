@@ -35,7 +35,7 @@ def run_game():
         # timer += 1
         gf.check_event(ship)
         ship.update()
-        gf.update_aliens(screen, ai_settings, aliens)
+        gf.update_aliens(screen, ai_settings, aliens, ship)
         # gf.print_numbers(ship)
         gf.update_screen(ai_settings, screen, ship, aliens)
         print(ai_settings.timer)

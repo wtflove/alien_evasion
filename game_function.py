@@ -50,7 +50,7 @@ def create_alien(screen, ai_settings, aliens):
     new_alien = Alien(screen, ai_settings)
     alien_x_range = round(get_alien_x_range(ai_settings, new_alien), 1)
     new_alien.rect.x = random.uniform(0, alien_x_range)
-    new_alien.rect.bottom = 0
+    new_alien.rect.y = 0 - new_alien.rect.height
     aliens.add(new_alien)
 
 
@@ -61,9 +61,22 @@ def create_alien_fleet(screen, ai_settings, aliens):
         create_alien(screen, ai_settings, aliens)
 
 
-def update_aliens(screen, ai_settings, aliens):
+def update_aliens(screen, ai_settings, aliens, ship):
     create_alien_fleet(screen, ai_settings, aliens)
     aliens.update()
+    check_edges(aliens, ai_settings)
+    check_collide(aliens, ship)
+
+def check_edges(aliens, ai_settings):
+    for alien in aliens.sprites():
+        if alien.rect.top > ai_settings.screen_height:
+            aliens.remove(alien)
+
+def check_collide(aliens, ship):
+    """check collide ship"""
+    collided_alien = pygame.sprite.spritecollideany(ship, aliens)
+    if collided_alien:
+        aliens.remove(collided_alien)
 
 
 # def print_numbers(ship):
